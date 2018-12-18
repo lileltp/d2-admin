@@ -3,48 +3,48 @@
     <el-button
       type="button"
       icon="fa fa-filter"
-      :size='buttonSize'
+      :size='size'
       @click="handleShowFilter"
       v-if="isShowFilter"
     >过滤</el-button>
     <el-button
       type="button"
       icon="el-icon-view"
-      :size='buttonSize'
+      :size='size'
       @click="handleView"
       v-if="isShowView"
     >查看</el-button>
     <el-button
       type="button"
-      :size='buttonSize'
+      :size='size'
       icon="el-icon-circle-plus-outline"
       @click="handelAdd"
       v-if="isShowAdd"
     >新增</el-button>
     <el-button
       type="button"
-      :size='buttonSize'
+      :size='size'
       icon="el-icon-edit"
       @click="handelModify"
       v-if="isShowUpdate"
     >修改</el-button>
     <el-button
       type="button"
-      :size='buttonSize'
+      :size='size'
       icon="el-icon-delete"
       @click="handelDelete"
       v-if="isShowDelete"
     >删除</el-button>
     <el-button
       type="button"
-      :size='buttonSize'
+      :size='size'
       icon="el-icon-refresh"
       @click="handelRefresh"
       v-if="isShowRefresh"
     >刷新</el-button>
     <el-button
       type="button"
-      :size='buttonSize'
+      :size='size'
       icon="el-icon-download"
       @click="handelDownload"
       v-if="isShowDownload"
@@ -55,7 +55,7 @@
 <script>
 export default {
   props: {
-    buttonSize: {
+    size: {
       type: String
     },
     isShowAdd: {
