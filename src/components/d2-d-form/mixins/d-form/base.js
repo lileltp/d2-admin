@@ -36,6 +36,10 @@ export default {
       type: Boolean,
       default: false
     },
+    usePageView: {
+      type: Boolean,
+      default: false
+    },
     usePageEdit: {
       type: Boolean,
       default: false

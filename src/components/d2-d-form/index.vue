@@ -8,6 +8,7 @@
             <tools-panel
               @show-modify="showFormDialog('modify')"
               @show-add="showFormDialog('add')"
+              @show-view="showViewDialog"
               @delete="handleDeletes"
               size="mini"
             ></tools-panel>
@@ -56,6 +57,13 @@
         @form-save="handleFormSave"
         @close="handleFormDialClose"
       ></form-dialog>
+      <view-dialog :title="formTitle"
+        :visible="viewDialogVisible"
+        :fullscreen="dialogFull"
+        :formTemplate="viewTemplate"
+        :formData="viewData"
+        @close="handleViewDialClose">
+      </view-dialog>
     </d2-container>
   </div>
 </template>
@@ -63,22 +71,23 @@
 import d2CrudTable from './components/d2-crud'
 import baseMixin from './mixins/d-form/base'
 import toolsPanel from './components/views/tools-panel'
-import viewPanel from './components/views/view'
 import pagePanel from './components/views/page-panel'
 import methods from './mixins/d-form/methods'
 import formDialog from './components/views/d2-d-form-dialog.vue'
+import viewDialog from './components/views/d2-d-view-dialog.vue'
 export default {
   props: ['columns', 'data'],
   mixins: [baseMixin, methods],
   components: {
     d2CrudTable,
     toolsPanel,
-    viewPanel,
     pagePanel,
-    formDialog
+    formDialog,
+    viewDialog
   },
   data () {
     return {
+      viewDialogVisible:false,
       formDialogVisible: false, // 编辑新增dialog是否显示
       viewDialogVisible: false,
       selectRows: null,
@@ -89,7 +98,9 @@ export default {
       formRules: {},
       formModel: '',
       formTitle: '新增',
-      editRowIndex: -1
+      editRowIndex: -1,
+      viewTemplate:null,
+      viewData:{}
     }
   },
   mounted () {

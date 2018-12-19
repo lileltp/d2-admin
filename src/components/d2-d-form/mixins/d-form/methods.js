@@ -77,41 +77,41 @@ export default {
         if (this.customerEdit) {
           this.$emit('customerEdit')
         } else {
-          if (this.usePageEdit) {
-          // TODO: 使用页面形式编辑
-          } else {
-            this.formTitle = '修改'
-            this.formTemplate = this.editFormTemplate
-            this.formRules = this.editFormRules
-            if (typeof (index) !== 'number') {
-              if ((this.selectSingleRow === null && this.selectRows === null) || (this.selectRows !== null && this.selectRows.length !== 1)) {
-                this.$message({
-                  message: '请先选择一条要编辑的数据',
-                  type: 'warning'
-                })
-                return
+          this.formTitle = '修改'
+          this.formTemplate = this.editFormTemplate
+          this.formRules = this.editFormRules
+          if (typeof (index) !== 'number') {
+            if ((this.selectSingleRow === null && this.selectRows === null) || (this.selectRows !== null && this.selectRows.length !== 1)) {
+              this.$message({
+                message: '请先选择一条要编辑的数据',
+                type: 'warning'
+              })
+              return
+            } else {
+              if (this.selectSingleRow) {
+                row = this.selectSingleRow
               } else {
-                if (this.selectSingleRow) {
-                  row = this.selectSingleRow
-                } else {
-                  row = this.selectRows[0]
-                }
+                row = this.selectRows[0]
               }
+            }
 
-              if (!row.id) {
-                this.$message({
-                  message: '使用工具栏修改按钮方式时,需要数据行拥有id字段',
-                  type: 'error'
-                })
-                return
-              } else {
-                for (let i in this.data) {
-                  if (this.data[i].id === row.id) {
-                    index = i
-                  }
+            if (!row.id) {
+              this.$message({
+                message: '使用工具栏修改按钮方式时,需要数据行拥有id字段',
+                type: 'error'
+              })
+              return
+            } else {
+              for (let i in this.data) {
+                if (this.data[i].id === row.id) {
+                  index = i
                 }
               }
             }
+          }
+          if (this.usePageEdit) {
+            // TODO: 使用页面形式编辑
+          } else {
             this.handleForm('modify', index, row)
           }
         }
@@ -247,6 +247,7 @@ export default {
    * @description 行双击时触发的事件
    */
     handleRowDblclick (row, event) {
+      this.showViewDialog()
       this.$emit('row-dblclick', row, event)
     },
     /**
@@ -260,6 +261,38 @@ export default {
    */
     handleHeaderContextmenu (column, event) {
       this.$emit('header-contextmenu', column, event)
+    },
+    showViewDialog () {
+      this.formTitle = '查看详情'
+      if (this.viewTemplate === null) {
+        this.viewTemplate = this.editFormTemplate
+      }
+      let row
+      if ((this.selectSingleRow === null && this.selectRows === null) || (this.selectRows !== null && this.selectRows.length !== 1)) {
+        this.$message({
+          message: '请先选择一条要查看的数据',
+          type: 'warning'
+        })
+        return
+      } else {
+        if (this.selectSingleRow) {
+          row = this.selectSingleRow
+        } else {
+          row = this.selectRows[0]
+        }
+      }
+      if (this.usePageView) {
+        // TODO: 使用页面形式编辑
+      } else {
+        this.viewData = this.viewTemplate ? _cloneDeep(this.viewTemplate) : {}
+        _forEach(this.viewData, (value, key) => {
+          this.viewData[key] = row.hasOwnProperty(key) ? row[key] : ''
+        })
+        this.viewDialogVisible = true
+      }
+    },
+    handleViewDialClose () {
+      this.viewDialogVisible = false
     }
   }
 }
