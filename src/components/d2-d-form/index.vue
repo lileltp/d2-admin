@@ -2,11 +2,17 @@
   <div>
     <d2-container>
       <template slot="header">
-        <tools-panel
-          @show-modify="showFormDialog('modify')"
-          @show-add="showFormDialog('add')"
-          size="mini"
-        ></tools-panel>
+        <div class="d2-clearfix">
+          <div class="d2-fl">{{title}}</div>
+          <div class="d2-fr">
+            <tools-panel
+              @show-modify="showFormDialog('modify')"
+              @show-add="showFormDialog('add')"
+              @delete="handleDeletes"
+              size="mini"
+            ></tools-panel>
+          </div>
+        </div>
       </template>
       <d2-crud-table
         ref="d2Data"

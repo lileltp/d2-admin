@@ -188,8 +188,8 @@ export default {
       type: String,
       default: 'mini'
     },
-    formTemplate:{
-      type:Object
+    formTemplate: {
+      type: Object
     }
   },
   methods: {
@@ -198,8 +198,8 @@ export default {
         if (valid) {
           this.$emit('handel-save', this.formData)
         } else {
-          console.log('error submit!!');
-          return false;
+          console.log('error submit!!')
+          return false
         }
       })
     }

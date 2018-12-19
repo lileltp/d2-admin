@@ -1,5 +1,8 @@
 export default {
   props: {
+    title: {
+      type: String
+    },
     options: {
       default: () => {
         return {
