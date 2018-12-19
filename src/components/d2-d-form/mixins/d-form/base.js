@@ -19,16 +19,49 @@ export default {
       default: null
     },
     rowHandle: { // 是否显示操作按钮
-      default: null
-      // edit: {
-      //   text: ''
-      // },
-      // remove: {
-      //   text: ''
-      // }
+      type: Object
     },
     currentRow: {
       type: Object
+    },
+    /** 全屏显示dialog */
+    dialogFull: {
+      type: Boolean,
+      default: false
+    },
+    usePageAdd: {
+      type: Boolean,
+      default: false
+    },
+    usePageEdit: {
+      type: Boolean,
+      default: false
+    },
+    /** 自定义新增 */
+    customerAdd: {
+      type: Boolean,
+      default: false
+    },
+    /** 自定义编辑 */
+    customerEdit: {
+      type: Boolean,
+      default: false
+    },
+    addFormTemplate: {
+      type: Object,
+      default: null
+    },
+    editFormTemplate: {
+      type: Object,
+      default: null
+    },
+    addFormRules: {
+      type: Object,
+      default: null
+    },
+    editFormRules: {
+      type: Object,
+      default: null
     }
   }
 }

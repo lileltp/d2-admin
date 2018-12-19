@@ -9,7 +9,6 @@
       <el-row v-bind="formOptions">
         <template
           v-for="(value, key, index) in formData"
-          :key="index"
         >
           <el-col
             v-if="formTemplate[key].component ? handleAttribute(formTemplate[key].component.show, true) : true"
@@ -174,10 +173,6 @@
 <script>
 export default {
   props: {
-    formTemplate: {
-      type: Object,
-      required: true
-    },
     formData: {
       type: Object,
       required: true
@@ -192,18 +187,21 @@ export default {
     size: {
       type: String,
       default: 'mini'
+    },
+    formTemplate:{
+      type:Object
     }
   },
   methods: {
     handleDialogSave () {
       this.$refs['form'].validate((valid) => {
         if (valid) {
-          this.$emit('handel-edit', this.formData)
+          this.$emit('handel-save', this.formData)
         } else {
           console.log('error submit!!');
           return false;
         }
-      });
+      })
     }
   }
 }

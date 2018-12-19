@@ -3,12 +3,13 @@
     <d2-container>
       <template slot="header">
         <tools-panel
-          @show-view='showView'
+          @show-modify="showFormDialog('modify')"
+          @show-add="showFormDialog('add')"
           size="mini"
         ></tools-panel>
       </template>
-
       <d2-crud-table
+        ref="d2Data"
         :data="data"
         :columns="columns"
         :options="options"
@@ -16,6 +17,7 @@
         :selectionRow="selectionRow"
         :indexRow="indexRow"
         @row-edit="handleRowEdit"
+        @row-delete="handleRowDelete"
         @current-change="handleCurrentChange"
         @select="handleSelect"
         @select-all="handleSelectAll"
@@ -36,7 +38,18 @@
       >
         <page-panel></page-panel>
       </template>
-      <view-panel :viewVisible="viewVisible" />
+      <form-dialog
+        :title="formTitle"
+        :visible="formDialogVisible"
+        :fullscreen="dialogFull"
+        :formTemplate="formTemplate"
+        :formData="formData"
+        :formRules="formRules"
+        :formModel="formModel"
+        :rowIndex="editRowIndex"
+        @form-save="handleFormSave"
+        @close="handleFormDialClose"
+      ></form-dialog>
     </d2-container>
   </div>
 </template>
@@ -47,6 +60,7 @@ import toolsPanel from './components/views/tools-panel'
 import viewPanel from './components/views/view'
 import pagePanel from './components/views/page-panel'
 import methods from './mixins/d-form/methods'
+import formDialog from './components/views/d2-d-form-dialog.vue'
 export default {
   props: ['columns', 'data'],
   mixins: [baseMixin, methods],
@@ -54,22 +68,25 @@ export default {
     d2CrudTable,
     toolsPanel,
     viewPanel,
-    pagePanel
+    pagePanel,
+    formDialog
   },
   data () {
     return {
-      viewVisible: false
+      formDialogVisible: false, // 编辑新增dialog是否显示
+      viewDialogVisible: false,
+      selectRows: null,
+      selectSingleRow: null,
+      selectSingleIndex: null,
+      formTemplate: {},
+      formData: {},
+      formRules: {},
+      formModel: '',
+      formTitle: '新增',
+      editRowIndex: -1
     }
   },
-  methods: {
-    showView () {
-
-    }
+  mounted () {
   }
 }
 </script>
-<style lang="css" scoped>
-.toTop {
-  z-index: 999999;
-}
-</style>

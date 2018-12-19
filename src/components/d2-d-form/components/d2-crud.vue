@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div></div>
+    <div v-if="title!==''">{{title}}</div>
     <el-table
       ref="elTable"
       :data="d2Data"
@@ -542,7 +542,6 @@ export default {
     renderComponent
   },
   mounted () {
-
   }
 }
 </script>
