@@ -173,7 +173,12 @@
 </template>
 <script>
 import handleAttribute from '../../mixins/d2-crud/utils.js'
+import renderCustomComponent from '../column/renderCustomComponent'
+import renderComponent from '../column/renderComponent'
 export default {
+  components:{
+    renderCustomComponent,renderComponent
+  },
   mixins:[handleAttribute],
   props: {
     formData: {

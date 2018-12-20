@@ -26,8 +26,8 @@ export default {
     scope: {
       default: null
     },
-    watchValue:{
-      default:null
+    watchValue: {
+      default: null
     }
   },
   render (h) {
@@ -36,7 +36,7 @@ export default {
       props: {
         value: self.value,
         scope: self.scope,
-        watchValue:self.watchValue,
+        watchValue: self.watchValue, // lileltp 如果需要联动需要添加此属性
         ...self.props
       },
       on: {

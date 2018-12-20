@@ -51,7 +51,15 @@
   </div>
 </template>
 <script>
+import renderCustomComponent from '../column/renderCustomComponent'
+import renderComponent from '../column/renderComponent'
+import handleAttribute from '../../mixins/d2-crud/utils.js'
+
 export default {
+  components: {
+    renderCustomComponent, renderComponent
+  },
+   mixins:[handleAttribute],
   props: {
     formData: {
       type: Object,
