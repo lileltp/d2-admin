@@ -142,6 +142,7 @@
               <render-custom-component
                 v-else-if="formTemplate[key].component.name"
                 v-model="formData[key]"
+                :watchValue="formData[formTemplate[key].watchValue]"
                 :component-name="formTemplate[key].component.name"
                 :props="formTemplate[key].component.props ? formTemplate[key].component.props : null"
               >
@@ -171,7 +172,9 @@
   </div>
 </template>
 <script>
+import handleAttribute from '../../mixins/d2-crud/utils.js'
 export default {
+  mixins:[handleAttribute],
   props: {
     formData: {
       type: Object,

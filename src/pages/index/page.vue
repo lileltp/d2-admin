@@ -29,6 +29,7 @@ export default {
   },
   data () {
     return {
+      ttt:'asdfasdfsadf',
       rowHandle: null,
       handleRequestNet: null,
       formTemplate: {
@@ -38,7 +39,11 @@ export default {
         },
         equ_id: {
           title: '设备编号',
-          value: ''
+          value: '',
+          watchValue:'project_id',
+          component: {
+            name: 'my-cop'
+          }
         }
       },
       formRules: {
@@ -46,18 +51,18 @@ export default {
       },
       selectionRow: [],
       columns: [{ title: '项目名称', key: 'project_id' },
-        { title: '设备', key: 'equ_id' },
-        { title: '日期',
-          key: 'date_time',
-          align: 'center',
-          component: {
-            name: 'el-tag'
-          }
-        },
-        { title: '存/取', key: 'access', align: 'center' },
-        { title: '细胞种类', key: 'cell_species' },
-        { title: 'save_location', key: '存放位置' },
-        { title: '使用人', key: 'user_id' }],
+      { title: '设备', key: 'equ_id' },
+      {        title: '日期',
+        key: 'date_time',
+        align: 'center',
+        component: {
+          name: 'el-tag'
+        }
+      },
+      { title: '存/取', key: 'access', align: 'center' },
+      { title: '细胞种类', key: 'cell_species' },
+      { title: 'save_location', key: '存放位置' },
+      { title: '使用人', key: 'user_id' }],
       data: [
         {
           id: 1,

@@ -25,6 +25,9 @@ export default {
      */
     scope: {
       default: null
+    },
+    watchValue:{
+      default:null
     }
   },
   render (h) {
@@ -33,6 +36,7 @@ export default {
       props: {
         value: self.value,
         scope: self.scope,
+        watchValue:self.watchValue,
         ...self.props
       },
       on: {
